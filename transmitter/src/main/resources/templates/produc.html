@@ -1,0 +1,36 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Input Data</title>
+</head>
+<body>
+
+
+<input type="text" name="txtMessage" id="name">
+<input type="submit" onclick="submit()">
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script type="text/javascript">
+    function submit(){
+        var msgContent = document.getElementById("name").value;
+
+        $.ajax({
+            url: "produc",
+            type: "POST",
+            dataType : "json",
+            contentType: "application/json; charset=utf-8",
+            data: ({txtMessage : msgContent}),
+            success: handleData(),
+            error: function (err) {
+                console.log(err);
+            }
+        });
+    }
+
+    function handleData() {
+        alert("Данные были переданы в брокер сообщений KAFKA!");
+    }
+</script>
+
+</body>
+</html>
